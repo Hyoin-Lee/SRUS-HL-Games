@@ -7,10 +7,10 @@ class Player:
     def uid(self):
         return self.__uid
 
+    @property
     def name(self):
         return self.__name
 
     @classmethod
     def __str__(self):
-        return f"Player name is {self.__name} and ID is {self.__uid}"
-
+        return f"Player name is {self.__name} and user ID is {self.__uid}"
