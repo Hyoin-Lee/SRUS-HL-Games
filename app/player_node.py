@@ -1,6 +1,3 @@
-from player import Player
-
-
 class PlayerNode:
     def __init__(self, player):
         self.__player = player
@@ -32,3 +29,4 @@ class PlayerNode:
 
     def __str__(self):
         return f"PlayerNode: {self.__player}"
+
