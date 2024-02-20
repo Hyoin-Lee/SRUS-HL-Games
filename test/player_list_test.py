@@ -38,6 +38,15 @@ class TestPlayerList(unittest.TestCase):
         self.assertEqual(player_list._PlayerList__tail.player, player2)
         self.assertEqual(player_list._PlayerList__tail.prev_node.player, player1)
 
+    def test_delete_at_head_empty_list(self):
+
+    def test_delete_at_head_not_empty_list(self):
+
+    def test_delete_at_tail_empty_list(self):
+
+    def test_delete_at_tail_not_empty_list(self):
+
+
 
 if __name__ == '__main__':
     unittest.main()
