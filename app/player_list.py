@@ -1,4 +1,4 @@
-from .player_node import PlayerNode
+from player_node import PlayerNode
 
 
 class PlayerList:
@@ -45,7 +45,7 @@ class PlayerList:
         else:
             deleted_player = self.__head.player
             self.__head = self.__head.next_node
-            self.__head.prev.node = None
+            self.__head.prev_node = None
         return deleted_player
 
     def delete_at_tail(self):
@@ -56,10 +56,6 @@ class PlayerList:
             self.__tail = None
         else:
             deleted_player = self.__tail.player
-            self.__tail = self.tail.prev.node
-            self.__tail.next.node = None
+            self.__tail = self.__tail.prev_node
+            self.__tail.next_node = None
         return deleted_player
-
-
-
-

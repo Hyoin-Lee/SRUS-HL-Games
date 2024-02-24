@@ -29,4 +29,3 @@ class PlayerNode:
 
     def __str__(self):
         return f"PlayerNode: {self.__player}"
-

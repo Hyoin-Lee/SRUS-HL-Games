@@ -1,6 +1,6 @@
 import unittest
-from app.player_list import PlayerList
-from app.player import Player
+from player_list import PlayerList
+from player import Player
 
 
 class TestPlayerList(unittest.TestCase):
@@ -39,13 +39,40 @@ class TestPlayerList(unittest.TestCase):
         self.assertEqual(player_list._PlayerList__tail.prev_node.player, player1)
 
     def test_delete_at_head_empty_list(self):
+        player_list = PlayerList()
+        deleted_player = player_list.delete_at_head()
+        self.assertIsNone(deleted_player)
+        self.assertTrue(player_list.is_empty())
 
     def test_delete_at_head_not_empty_list(self):
+        player_list = PlayerList()
+        player1 = Player(35, "Scott")
+        player2 = Player(30, "Emily")
+        player_list.insert_at_head(player1)
+        player_list.insert_at_head(player2)
+        deleted_player = player_list.delete_at_head()
+        self.assertFalse(player_list.is_empty())
+        self.assertEqual(deleted_player, player2)
+        self.assertEqual(player_list._PlayerList__head.player, player1)
+        self.assertIsNone(player_list._PlayerList__head.prev_node)
 
     def test_delete_at_tail_empty_list(self):
+        player_list = PlayerList()
+        deleted_player = player_list.delete_at_tail()
+        self.assertIsNone(deleted_player)
+        self.assertTrue(player_list.is_empty())
 
     def test_delete_at_tail_not_empty_list(self):
-
+        player_list = PlayerList()
+        player1 = Player(35, "Scott")
+        player2 = Player(30, "Emily")
+        player_list.insert_at_tail(player1)
+        player_list.insert_at_tail(player2)
+        deleted_player = player_list.delete_at_tail()
+        self.assertFalse(player_list.is_empty())
+        self.assertEqual(deleted_player, player2)
+        self.assertEqual(player_list._PlayerList__tail.player, player1)
+        self.assertIsNone(player_list._PlayerList__tail.next_node)
 
 
 if __name__ == '__main__':
