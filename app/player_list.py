@@ -83,3 +83,17 @@ class PlayerList:
 
         return None  # key not found
 
+    def display(self, forward=True):
+        if forward:
+            current_node = self.__head
+            while current_node:
+                print(f"Player: {current_node.player.name} (UID: {current_node.player.uid}) ")
+                current_node = current_node.next_node
+
+        else:
+            current_node = self.__tail
+            while current_node:
+                print(f"Player: {current_node.player.name} (UID: {current_node.player.uid}) ")
+                current_node = current_node.prev_node
+
+
