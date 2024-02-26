@@ -74,6 +74,43 @@ class TestPlayerList(unittest.TestCase):
         self.assertEqual(player_list._PlayerList__tail.player, player1)
         self.assertIsNone(player_list._PlayerList__tail.next_node)
 
+    def test_delete_by_key_empty_list(self):
+        player_list = PlayerList()
+        deleted_played = player_list.delete_by_key(35)
+        self.assertIsNone(deleted_played)
+        self.assertTrue(player_list.is_empty())
+
+    def test_delete_by_key_head(self):
+        player_list = PlayerList()
+        player1 = Player(35, "Scott")
+        player_list.insert_at_head(player1)
+        deleted_player = player_list.delete_by_key(35)
+        self.assertEqual(deleted_player, player1)
+        self.assertTrue(player_list.is_empty())
+
+    def test_delete_by_key_tail(self):
+        player_list = PlayerList()
+        player1 = Player(35, "Scott")
+        player_list.insert_at_tail(player1)
+        deleted_player = player_list.delete_by_key(35)
+        self.assertEqual(deleted_player, player1)
+        self.assertTrue(player_list.is_empty())
+
+    def test_delete_by_key_middle(self):
+        player_list = PlayerList()
+        player1 = Player(35, "Scott")
+        player2 = Player(30, "Emily")
+        player3 = Player(25, "Jin")
+        player_list.insert_at_head(player1)
+        player_list.insert_at_head(player2)
+        player_list.insert_at_head(player3)
+        deleted_player = player_list.delete_by_key(30)
+        self.assertEqual(deleted_player, player2)
+        self.assertFalse(player_list.is_empty())
+        self.assertEqual(player_list._PlayerList__head.player, player3)
+        self.assertEqual(player_list._PlayerList__tail.player, player1)
+
+
 
 if __name__ == '__main__':
     unittest.main()
