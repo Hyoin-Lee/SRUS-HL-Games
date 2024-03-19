@@ -111,6 +111,5 @@ class TestPlayerList(unittest.TestCase):
         self.assertEqual(player_list._PlayerList__tail.player, player1)
 
 
-
 if __name__ == '__main__':
     unittest.main()
