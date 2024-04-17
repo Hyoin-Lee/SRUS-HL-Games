@@ -1,6 +1,7 @@
 from player_bnode import PlayerBNode
 from player import Player
 
+
 class PlayerBST:
     def __init__(self):
         self._root = None
@@ -49,7 +50,28 @@ class PlayerBST:
         else:
             current_node.player = player
 
+    def search(self, name):
+        return self._search_recursively(self._root, name)
+
+    def _search_recursively(self, current_node, name):
+        if current_node is None:
+            return False
+        if current_node.player.name == name:
+            return True
+        else:
+            if name < current_node.player.name:
+                return self._search_recursively(current_node.left, name)
+            else:
+                return self._search_recursively(current_node.right, name)
 
 
-
-
+# bst = PlayerBST()
+#
+# bst.insert(Player("1", "Scott"))
+# bst.insert(Player("2", "Emily"))
+# bst.insert(Player("3", "Jin"))
+#
+# print (bst.search(name="Scott"))
+# print (bst.search(name="Emily"))
+# print (bst.search(name="Jin"))
+# print (bst.search(name="Ti"))
