@@ -8,22 +8,22 @@ class PlayerBNode:
     def player(self):
         return self._player
 
-    @player.setter
-    def player(self, value):
-        self._player = value
+    # @player.setter
+    # def player(self, value):
+    #     self._player = value
 
     @property
     def left(self):
         return self._left
 
     @left.setter
-    def left(self, value):
-        self._left = value
+    def left(self, node):
+        self._left = node
 
     @property
     def right(self):
         return self._right
 
     @right.setter
-    def right(self, value):
-        self._right = value
+    def right(self, node):
+        self._right = node

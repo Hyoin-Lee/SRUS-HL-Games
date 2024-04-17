@@ -1,4 +1,5 @@
 from player_bnode import PlayerBNode
+from player import Player
 
 class PlayerBST:
     def __init__(self):
@@ -9,27 +10,45 @@ class PlayerBST:
         return self._root
 
     def insert(self, player):
-        self._root = self._insert_recursively(self._root, player)
+        if not isinstance(player, Player):
+            raise TypeError("Argument must be a Player object")
 
-    def _insert_recursively(self, node, player):
-        # If node is None, create a new node with the player and return it
-        if node is None:
-            return PlayerBNode(player)
+        # If the tree is empty, create a new root node
+        if not self._root:
+            self._root = PlayerBNode(player)
+        else:
+            self._insert_recursively(self._root, player)
+
+    def _insert_recursively(self, current_node, player):
 
         # If the player's name is less than the current node's player name in alphabetical order,
         # insert it into the left subtree
-        if player.name < node.player.name:
-            node.left = self._insert_recursively(node.left, player)
+        if player.name < current_node.player.name:
+            # If the left child of the current node exists, it calls _insert_recursively to insert
+            # the player object into the right position
+            if current_node.left:
+                self._insert_recursively(current_node.left, player)
+            # If it doesn't exist, it creates a new PlayerBNode with the player object and sets it
+            # as the left child of the current node
+            else:
+                current_node.left = PlayerBNode(player)
+
         # If the player's name is greater than the current node's player name in alphabetically,
         # insert it into the right subtree
-        elif player.name > node.player.name:
-            node.right = self._insert_recursively(node.right, player)
+        elif player.name > current_node.player.name:
+            # If the right child of the current node exists, it calls _insert_recursively to insert
+            # the player object into the right position
+            if current_node.right:
+                self._insert_recursively(current_node.right, player)
+            # If it doesn't exist, it creates a new PlayerBNode with the player object and sets it
+            # as the right child of the current node
+            else:
+                current_node.right = PlayerBNode(player)
         # If the player's name is equal to the current node's player name,
-        # update the value of the node with the new player object
+        # update the player object
         else:
-            node.player = player
+            current_node.player = player
 
-        return node
 
 
 
