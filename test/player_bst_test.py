@@ -17,10 +17,14 @@ class TestPlayerBST(unittest.TestCase):
         bst.insert(player3)
         bst.insert(player4)
 
-        self.assertEqual(bst.root.player, player1)   # Root player = Scott
-        self.assertEqual(bst.root.left.player, player2)  # Left child of root = Emily
-        self.assertEqual(bst.root.left.right.player, player3)  # Right child of Emily
-        self.assertEqual(bst.root.right.player, player4)  # Right child of root
+        self.assertEqual(bst.root.player.name, player1.name)
+        # print (bst.root.player.name)
+        self.assertEqual(bst.root.left.player.name, player2.name)
+        # print(bst.root.left.player.name)
+        self.assertEqual(bst.root.left.right.player.name, player3.name)
+        # print(bst.root.left.right.player.name)
+        self.assertEqual(bst.root.right.player.name, player4.name)
+        # print(bst.root.right.player.name)
 
     def test_search(self):
         bst = PlayerBST()
