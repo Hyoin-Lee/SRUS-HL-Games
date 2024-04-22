@@ -5,6 +5,7 @@ from player import Player
 class PlayerBST:
     def __init__(self):
         self._root = None
+        self._sorted_list = []
 
     @property
     def root(self):
@@ -64,13 +65,49 @@ class PlayerBST:
             else:
                 return self._search_recursively(current_node.right, name)
 
+    def in_order_traverse(self):
+        self._sorted_list = []
+        self._in_order_traverse_recursively(self._root)
+        return self._sorted_list
 
-# bst = PlayerBST()
-#
-# bst.insert(Player("1", "Scott"))
-# bst.insert(Player("2", "Emily"))
-# bst.insert(Player("3", "Jin"))
-#
+    def _in_order_traverse_recursively(self, current_node):
+        if current_node:
+            self._in_order_traverse_recursively(current_node.left)
+            self._sorted_list.append(current_node.player)
+            self._in_order_traverse_recursively(current_node.right)
+
+    def construct_balanced_bst(self):
+        sorted_players = self.in_order_traverse()
+        return self._construct_balanced_bst_recursively(sorted_players)
+
+    def _construct_balanced_bst_recursively(self, players):
+        if not players:
+            return None
+        middle_element = len(players) // 2
+        root = PlayerBNode(players[middle_element])
+        root.left = self._construct_balanced_bst_recursively(players[:middle_element])
+        root.right = self._construct_balanced_bst_recursively(players[middle_element+1:])
+        return root
+
+
+bst = PlayerBST()
+bst.insert(Player("1", "Scott"))
+bst.insert(Player("2", "Emily"))
+bst.insert(Player("3", "Jin"))
+bst.insert(Player("4", "Alice"))
+bst.insert(Player("5", "Grace"))
+bst.insert(Player("6", "Bob"))
+bst.insert(Player("7", "Dan"))
+
+sorted_players = bst.in_order_traverse()
+print("Sorted list of players:", [player.name for player in sorted_players])
+
+balanced_bst_root = bst.construct_balanced_bst()
+
+sorted_players_balanced = bst.in_order_traverse()
+print("Sorted list of players in balanced BST:", [player.name for player in sorted_players_balanced])
+
+
 # print (bst.search(name="Scott"))
 # print (bst.search(name="Emily"))
 # print (bst.search(name="Jin"))
