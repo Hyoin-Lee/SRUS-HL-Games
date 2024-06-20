@@ -1,17 +1,18 @@
 from player_bnode import PlayerBNode
 from player import Player
+from typing import List, Optional
 
 
 class PlayerBST:
-    def __init__(self):
-        self._root = None
-        self._sorted_list = []
+    def __init__(self) -> None:
+        self._root: Optional[PlayerBNode] = None
+        self._sorted_list: List[Player] = []
 
     @property
-    def root(self):
+    def root(self) -> Optional[PlayerBNode]:
         return self._root
 
-    def insert(self, player):
+    def insert(self, player: Player) -> None:
         if not isinstance(player, Player):
             raise TypeError("Argument must be a Player object")
 
@@ -21,8 +22,7 @@ class PlayerBST:
         else:
             self._insert_recursively(self._root, player)
 
-    def _insert_recursively(self, current_node, player):
-
+    def _insert_recursively(self, current_node: PlayerBNode, player) -> None:
         # If the player's name is less than the current node's player name in alphabetical order,
         # insert it into the left subtree
         if player.name < current_node.player.name:
@@ -51,10 +51,10 @@ class PlayerBST:
         else:
             current_node.player = player
 
-    def search(self, name):
+    def search(self, name: str) -> bool:
         return self._search_recursively(self._root, name)
 
-    def _search_recursively(self, current_node, name):
+    def _search_recursively(self, current_node: Optional[PlayerBNode], name: str) -> bool:
         if current_node is None:
             return False
         if current_node.player.name == name:
@@ -65,22 +65,22 @@ class PlayerBST:
             else:
                 return self._search_recursively(current_node.right, name)
 
-    def in_order_traverse(self):
+    def in_order_traverse(self) -> List[Player]:
         self._sorted_list = []
         self._in_order_traverse_recursively(self._root)
         return self._sorted_list
 
-    def _in_order_traverse_recursively(self, current_node):
+    def _in_order_traverse_recursively(self, current_node: Optional[PlayerBNode]) -> None:
         if current_node:
             self._in_order_traverse_recursively(current_node.left)
             self._sorted_list.append(current_node.player)
             self._in_order_traverse_recursively(current_node.right)
 
-    def construct_balanced_bst(self):
-        sorted_players = self.in_order_traverse()
-        return self._construct_balanced_bst_recursively(sorted_players)
+    def construct_balanced_bst(self) -> None:
+        players_sorted = self.in_order_traverse()
+        return self._construct_balanced_bst_recursively(players_sorted)
 
-    def _construct_balanced_bst_recursively(self, players):
+    def _construct_balanced_bst_recursively(self, players: List[Player]) -> Optional[PlayerBNode]:
         if not players:
             return None
         middle_element = len(players) // 2
@@ -102,13 +102,7 @@ bst.insert(Player("7", "Dan"))
 sorted_players = bst.in_order_traverse()
 print("Sorted list of players:", [player.name for player in sorted_players])
 
-balanced_bst_root = bst.construct_balanced_bst()
+bst.construct_balanced_bst()
 
 sorted_players_balanced = bst.in_order_traverse()
 print("Sorted list of players in balanced BST:", [player.name for player in sorted_players_balanced])
-
-
-# print (bst.search(name="Scott"))
-# print (bst.search(name="Emily"))
-# print (bst.search(name="Jin"))
-# print (bst.search(name="Ti"))

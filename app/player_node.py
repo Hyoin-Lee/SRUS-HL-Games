@@ -1,31 +1,36 @@
+from player import Player
+from typing import Optional
+
+
 class PlayerNode:
-    def __init__(self, player):
-        self.__player = player
-        self.__next_node = None
-        self.__previous_node = None
+    def __init__(self, player: Player):
+        self._player = player
+        self._next_node: Optional[PlayerNode] = None
+        self._previous_node: Optional[PlayerNode] = None
 
     @property
-    def player(self):
-        return self.__player
+    def player(self) -> Player:
+        return self._player
 
     @property
-    def next_node(self):
-        return self.__next_node
+    def next_node(self) -> Optional['PlayerNode']:
+        return self._next_node
 
     @next_node.setter
-    def next_node(self, node):
-        self.__next_node = node
+    def next_node(self, node: Optional['PlayerNode']) -> None:
+        self._next_node = node
 
     @property
-    def prev_node(self):
-        return self.__previous_node
+    def prev_node(self) -> Optional['PlayerNode']:
+        return self._previous_node
 
     @prev_node.setter
-    def prev_node(self, node):
-        self.__previous_node = node
+    def prev_node(self, node: Optional['PlayerNode']) -> None:
+        self._previous_node = node
 
-    def key(self):
-        return self.__player.uid
+    def key(self) -> str:
+        return self._player.uid
 
-    def __str__(self):
-        return f"PlayerNode: {self.__player}"
+    def __str__(self) -> str:
+        return f"PlayerNode: {self._player}"
+    

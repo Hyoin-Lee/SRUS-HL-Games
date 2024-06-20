@@ -31,36 +31,36 @@ class TestPlayer(unittest.TestCase):
         self.assertFalse(player.verify_password("this is not correct password"))
 
     def test_equal(self):
-        player1 = Player(uid=1, name="Scott")
-        player2 = Player(uid=2, name="Emily")
+        player1 = Player(uid='1', name="Scott")
+        player2 = Player(uid='2', name="Emily")
         player1.score = 100
         player2.score = 100
         self.assertTrue(player1 == player2)
 
     def test_not_equal(self):
-        player1 = Player(uid=1, name="Scott")
-        player2 = Player(uid=2, name="Emily")
+        player1 = Player(uid='1', name="Scott")
+        player2 = Player(uid='2', name="Emily")
         player1.score = 100
         player2.score = 150
         self.assertTrue(player1 != player2)
 
     def test_less_than(self):
-        player1 = Player(uid=1, name="Scott")
-        player2 = Player(uid=2, name="Emily")
+        player1 = Player(uid='1', name="Scott")
+        player2 = Player(uid='2', name="Emily")
         player1.score = 100
         player2.score = 150
         self.assertTrue(player1 < player2)
 
     def test_greater_than(self):
-        player1 = Player(uid=1, name="Scott")
-        player2 = Player(uid=2, name="Emily")
+        player1 = Player(uid='1', name="Scott")
+        player2 = Player(uid='2', name="Emily")
         player1.score = 150
         player2.score = 100
         self.assertTrue(player1 > player2)
 
     def test_less_than_or_equal(self):
-        player1 = Player(uid=1, name="Scott")
-        player2 = Player(uid=2, name="Emily")
+        player1 = Player(uid='1', name="Scott")
+        player2 = Player(uid='2', name="Emily")
         player1.score = 100
         player2.score = 100
         self.assertTrue(player1 <= player2)
@@ -68,8 +68,8 @@ class TestPlayer(unittest.TestCase):
         self.assertTrue(player1 <= player2)
 
     def test_greater_than_or_equal(self):
-        player1 = Player(uid=1, name="Scott")
-        player2 = Player(uid=2, name="Emily")
+        player1 = Player(uid='1', name="Scott")
+        player2 = Player(uid='2', name="Emily")
         player1.score = 150
         player2.score = 100
         self.assertTrue(player1 >= player2)
@@ -78,10 +78,10 @@ class TestPlayer(unittest.TestCase):
 
     def test_sort_players(self):
         players = [
-            Player(uid=1, name="Scott"),
-            Player(uid=2, name="Emily"),
-            Player(uid=1, name="Jin"),
-            Player(uid=1, name="Dave")
+            Player(uid='1', name="Scott"),
+            Player(uid='2', name="Emily"),
+            Player(uid='3', name="Jin"),
+            Player(uid='4', name="Dave")
         ]
         players[0].score = 100
         players[1].score = 200
