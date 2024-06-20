@@ -103,5 +103,3 @@ class PlayerList:
             while current_node:
                 print(f"Player: {current_node.player.name} (UID: {current_node.player.uid}) ")
                 current_node = current_node.prev_node
-
-
